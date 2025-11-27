@@ -2,17 +2,31 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
 
-# 1. Load Data
+# Load metadata
 df = pd.read_csv('metadata.csv')
 
-# 2. Adjust File Paths
-# You mentioned images are in folders named 'phylum_family'. 
-# The CSV 'file_path' column already includes 'phylum_family/filename.jpg'.
-# You just need to add the root directory where you unzipped the images.
+# Clean metadata: Remove rows with missing file paths or family labels
+df = df.dropna(subset=['file_path', 'family']).reset_index(drop=True)
+
+# Adjust File Paths
 data_root_path = '/Users/jakubb/Desktop/rare_species' 
 df['full_path'] = df['file_path'].apply(lambda x: os.path.join(data_root_path, x))
 
-# 3. Stratified Split (Crucial for rare species)
+# Check for missing files
+df['exists'] = df['full_path'].apply(os.path.exists)
+missing = df[df['exists'] == False]
+
+print("Missing images:", len(missing))
+if len(missing) > 0:
+    print(missing[['file_path']].head())
+
+# Drop rows with missing images
+df = df[df['exists'] == True].reset_index(drop=True)
+
+# Check class imbalance
+print(df['family'].value_counts()) # para o report
+
+# Stratified Split 
 # Split: 70% Train, 15% Validation, 15% Test
 train_df, test_df = train_test_split(df, test_size=0.15, stratify=df['family'], random_state=42)
 train_df, val_df = train_test_split(train_df, test_size=0.1765, stratify=train_df['family'], random_state=42) 
@@ -21,3 +35,8 @@ train_df, val_df = train_test_split(train_df, test_size=0.1765, stratify=train_d
 print(f"Train shape: {train_df.shape}")
 print(f"Val shape: {val_df.shape}")
 print(f"Test shape: {test_df.shape}")
+
+
+
+#from tensorflow.keras.preprocessing.image import ImageDataGenerator
+#from tensorflow.keras.regularizers import L1,L2
