@@ -1,24 +1,6 @@
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.models import Model
-from keras.layers import Dropout
-
-from sklearn.utils.class_weight import compute_class_weight
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.metrics import classification_report
-
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
 import os
-import numpy as np
 from PIL import Image
 
 # Load metadata
