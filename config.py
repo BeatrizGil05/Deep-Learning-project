@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Paths (set in .env file)
-#DATA_DIR = os.getenv("DATA_DIR", "data/raw")
+DATA_DIR = os.getenv("DATA_DIR")
 METADATA_PATH = os.path.join(DATA_DIR, "metadata.csv")  # Adjust as needed
 OUTPUT_DIR = os.getenv("OUTPUT_DIR", "outputs")
 
