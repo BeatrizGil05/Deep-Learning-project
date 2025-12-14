@@ -41,11 +41,3 @@ def preprocess(df):
     unique_families = df['family'].unique()
     print(df['family'].nunique()) # 202
     df.head(3)
-
-# Stratified Split: 70% Train, 15% Validation, 15% Test
-train_df, test_df = train_test_split(df, test_size = 0.15, stratify = df['family'], random_state = 42)
-train_df, val_df = train_test_split(train_df, test_size = 0.1765, stratify = train_df['family'], random_state = 42) 
-# (0.1765 of the remaining 85% is roughly 15% of the total)
-print(f"Train shape: {train_df.shape}") # Train shape: (8387, 10)
-print(f"Val shape: {val_df.shape}") # Val shape: (1798, 10)
-print(f"Test shape: {test_df.shape}") # Test shape: (1798, 10)
