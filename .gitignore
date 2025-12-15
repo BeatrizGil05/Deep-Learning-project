@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+*.egg-info/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# TensorFlow/Keras - models and training outputs
+*.h5
+*.hdf5
+*.keras
+*.ckpt
+*.ckpt.*
+checkpoint
+logs/
+tensorboard/
+
+# Data (everyone has their own)
+data/
+
+# Outputs (everyone generates their own)
+outputs/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Environment variables
+.env
