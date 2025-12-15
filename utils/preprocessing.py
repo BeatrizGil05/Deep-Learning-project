@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 # Load metadata
-df = pd.read_csv('metadata.csv')
+df = pd.read_csv(r'C:\Users\inesb\Downloads\Deep-Learning-project\metadata.csv')
 data_root_path = r'C:\Users\inesb\Downloads\rare_species'
 
 def preprocess(df):
